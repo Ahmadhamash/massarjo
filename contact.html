@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معنا | مسار</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="min-h-screen overflow-x-hidden">
+
+    <header class="sticky top-0 z-50 w-full backdrop-blur-xl shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="hidden md:block mx-auto mt-5 max-w-5xl">
+                <div class="flex items-center justify-between px-4 py-2 backdrop-blur-xl rounded-full shadow-lg" style="background: rgba(30, 41, 59, 0.8);">
+                    <a href="index.html">
+                        <span class="text-3xl font-black" style="color: var(--text-dark);">مسار<span class="text-indigo-600">.</span></span>
+                    </a>
+                    <nav class="flex gap-8 items-center font-semibold" style="color: var(--text-dark);">
+                         <a class="hover:text-indigo-600 transition-colors" href="index.html#services">خدماتنا</a>
+                        <a class="hover:text-indigo-600 transition-colors" href="index.html#tree-plan">الخطة الشجرية</a>
+                        <a class="hover:text-indigo-600 transition-colors" href="index.html#holland-assessment">مقياس هولاند</a>
+                        <a class="hover:text-indigo-600 transition-colors" href="index.html#mentors">مرشدونا</a>
+                        <a class="hover:text-indigo-600 transition-colors" href="index.html#packages">الباقات</a>
+                        <a class="hover:text-indigo-600 transition-colors" href="index.html#testimonials">قصص النجاح</a>
+                    </nav>
+                    <div class="flex items-center gap-4">
+                        <a href="index.html#packages" class="bg-indigo-600 text-white font-bold py-3 px-6 rounded-full hover:bg-indigo-700 transition-all transform hover:scale-105 shadow-md hover:shadow-lg shadow-indigo-200">
+                            احجز جلستك
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:hidden flex items-center justify-between h-20">
+                <a href="index.html">
+                    <span class="text-3xl font-black" style="color: var(--text-dark);">مسار<span class="text-indigo-600">.</span></span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="contact-section py-16 md:py-28">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h1 class="section-title">تواصل معنا</h1>
+                    <p class="mt-4 text-lg" style="color: var(--text-light);">
+                        هل لديك سؤال أو استفسار؟ فريقنا جاهز لمساعدتك. املأ النموذج أدناه أو استخدم إحدى طرق التواصل المباشرة.
+                    </p>
+                </div>
+
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+                    <div class="md:col-span-7">
+                        <div class="contact-form-container p-8 rounded-2xl">
+                             <h3 class="text-2xl font-bold mb-6" style="color: var(--text-dark);">أرسل رسالة مباشرة</h3>
+                            <form action="#" method="POST">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                    <div class="form-group">
+                                        <label for="name">الاسم الكامل</label>
+                                        <input type="text" id="name" name="name" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">البريد الإلكتروني</label>
+                                        <input type="email" id="email" name="email" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="form-group mt-6">
+                                    <label for="subject">الموضوع</label>
+                                    <input type="text" id="subject" name="subject" class="form-control" required>
+                                </div>
+                                <div class="form-group mt-6">
+                                    <label for="message">الرسالة</label>
+                                    <textarea id="message" name="message" rows="5" class="form-control" required></textarea>
+                                </div>
+                                <div class="mt-8">
+                                    <button type="submit" class="btn-primary w-full md:w-auto">
+                                        <i class="fas fa-paper-plane mr-2"></i>
+                                        إرسال الرسالة
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-5">
+                         <h3 class="text-2xl font-bold mb-6" style="color: var(--text-dark);">معلومات التواصل</h3>
+                         <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold" style="color: var(--text-dark);">رقم الهاتف</h4>
+                                    <p style="color: var(--text-light);">962788888888+</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start gap-4">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold" style="color: var(--text-dark);">البريد الإلكتروني</h4>
+                                    <p style="color: var(--text-light);">contact@masar.com</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start gap-4">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold" style="color: var(--text-dark);">الموقع</h4>
+                                    <p style="color: var(--text-light);">عمان، الأردن</p>
+                                </div>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-12 w-full text-white" style="background: var(--dark-bg);">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-1">
+                    <a href="index.html" class="text-3xl font-black text-white">مسار<span class="text-secondary">.</span></a>
+                    <p class="text-slate-400 mt-2">نرسم معك طريق المستقبل.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-slate-200">الشركة</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">من نحن</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">الوظائف</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">المدونة</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-slate-200">خدماتنا</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html#packages" class="text-slate-400 hover:text-white transition-colors">الجلسات الإرشادية</a></li>
+                        <li><a href="index.html#services" class="text-slate-400 hover:text-white transition-colors">الخدمات الطلابية</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-slate-200">الدعم</h4>
+                    <ul class="space-y-3">
+                        <li><a href="contact.html" class="text-slate-400 hover:text-white transition-colors">تواصل معنا</a></li>
+                        <li><a href="index.html#faq" class="text-slate-400 hover:text-white transition-colors">الأسئلة الشائعة</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-10 border-t border-slate-700 pt-6 text-center text-sm text-slate-400">
+                <p>&copy; جميع الحقوق محفوظة لمنصة مسار 2025.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

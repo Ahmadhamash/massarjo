@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار النموذج متعدد الخطوات</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            padding: 20px;
+            font-family: 'Tajawal', sans-serif;
+        }
+        .test-button {
+            background: #4f46e5;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        .test-button:hover {
+            background: #4338ca;
+        }
+    </style>
+</head>
+<body>
+    <h1>اختبار النموذج متعدد الخطوات</h1>
+    
+    <button class="test-button" onclick="testOpenForm()">فتح النموذج</button>
+    <button class="test-button" onclick="testWithPackage()">فتح مع باقة</button>
+    
+    <div id="info" style="margin-top: 20px; padding: 15px; background: #f3f4f6; border-radius: 8px;"></div>
+
+    <!-- نموذج الباقات متعدد الخطوات -->
+    <div id="multiStepFormModal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 600px;">
+            <button class="close-modal" onclick="closeMultiStepForm()">&times;</button>
+            
+            <div class="mb-6">
+                <div class="flex justify-between items-center mb-2">
+                    <h2 class="text-xl font-bold" style="color: var(--text-dark);">إتمام الطلب</h2>
+                    <span id="currentStepText" class="text-sm" style="color: var(--text-light);">الخطوة 1 من 5</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div id="multiStepProgress" class="progress-bar-fill" style="width: 20%;"></div>
+                </div>
+            </div>
+            
+            <div id="formStepContainer"></div>
+            
+            <div class="flex gap-3 mt-6">
+                <button type="button" id="prevStepBtn" onclick="previousFormStep()" class="btn-secondary flex-1" style="display: none;">
+                    السابق
+                </button>
+                <button type="button" id="nextStepBtn" onclick="nextFormStep()" class="btn-primary flex-1">
+                    التالي
+                </button>
+                <button type="button" id="submitFormBtn" onclick="submitMultiStepForm()" class="btn-primary flex-1" style="display: none;">
+                    تأكيد الطلب
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // متغيرات وهمية للاختبار
+        const API_BASE_URL = "http://localhost:5000/api";
+        let currentUser = { name: 'مستخدم تجريبي', email: 'test@test.com' };
+        let selectedPackage = null;
+        let selectedMentor = null;
+        let allMentorsData = [
+            { _id: '1', name: 'أفنان الشهراني', title: 'مرشد أكاديمي', avatar: '' },
+            { _id: '2', name: 'محمد الغامدي', title: 'مرشد مهني', avatar: '' }
+        ];
+
+        function showNotification(message, type) {
+            const info = document.getElementById('info');
+            info.innerHTML = `<strong>${type}:</strong> ${message}`;
+            info.style.background = type === 'error' ? '#fee2e2' : '#d1fae5';
+        }
+
+        function testOpenForm() {
+            if (typeof openMultiStepForm === 'function') {
+                openMultiStepForm();
+            } else {
+                alert('الدالة openMultiStepForm غير موجودة');
+            }
+        }
+
+        function testWithPackage() {
+            selectedPackage = {
+                _id: 'test-1',
+                name: 'باقة التوجيهي',
+                title: 'باقة التوجيهي',
+                price: 35
+            };
+            testOpenForm();
+        }
+    </script>
+    <script src="multi-step-form.js"></script>
+</body>
+</html>

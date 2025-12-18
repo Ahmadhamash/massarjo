@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مسار | خدمة السيرة الذاتية الاحترافية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="min-h-screen overflow-x-hidden">
+
+    <header class="sticky top-0 z-50 w-full backdrop-blur-xl shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="hidden md:block mx-auto mt-5 max-w-5xl">
+                <div class="flex items-center justify-between px-4 py-2 backdrop-blur-xl rounded-full shadow-lg" style="background: rgba(30, 41, 59, 0.8);">
+                    <a href="index.html">
+                        <span class="text-3xl font-black" style="color: var(--text-dark);">مسار<span class="text-indigo-600">.</span></span>
+                    </a>
+                    <nav class="flex gap-8 items-center font-semibold" style="color: var(--text-dark);">
+                        <a class="hover:text-indigo-600 transition-colors" href="index.html#services">خدماتنا</a>
+                        <a class="hover:text-indigo-600 transition-colors" href="index.html#packages">الباقات</a>
+                        <a class="hover:text-indigo-600 transition-colors" href="index.html#mentors">مرشدونا</a>
+                    </nav>
+                    <a href="index.html#packages" class="bg-indigo-600 text-white font-bold py-3 px-6 rounded-full hover:bg-indigo-700 transition-all transform hover:scale-105 shadow-md hover:shadow-lg shadow-indigo-200">
+                        احجز جلستك
+                    </a>
+                </div>
+            </div>
+            <div class="md:hidden flex items-center justify-between h-20">
+                 <a href="index.html">
+                    <span class="text-3xl font-black" style="color: var(--text-dark);">مسار<span class="text-indigo-600">.</span></span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="pt-16 pb-20 md:pt-24 md:pb-20" style="background: var(--background-secondary);">
+            <div class="container mx-auto px-6 text-center">
+                <div class="reveal max-w-3xl mx-auto">
+                    <h1 class="section-title" style="color: var(--text-dark);">
+                        سيرتك الذاتية هي مفتاحك الأول
+                    </h1>
+                    <p class="mt-6 text-base md:text-lg max-w-2xl mx-auto" style="color: var(--text-light);">
+                        سواء كنت خريجاً جديداً أو تبحث عن فرصة أفضل، نحن نساعدك في صياغة سيرة ذاتية احترافية متوافقة مع أنظمة الفلترة (ATS) وتجذب انتباه مسؤولي التوظيف.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section class="py-16 md:py-28" style="background: linear-gradient(135deg, var(--background) 0%, var(--background-secondary) 100%);">
+            <div class="container mx-auto px-4 sm:px-6">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="section-title" style="color: var(--text-dark);">اختر الباقة التي تناسبك</h2>
+                    <p class="mt-4 text-lg" style="color: var(--text-light);">ابدأ مجاناً أو احصل على مراجعة شاملة من خبراء.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+                    
+                    <div class="mobile-package-card golden-package">
+                        <div class="p-6 md:p-8">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-12 h-12 rounded-xl flex items-center justify-center">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl md:text-2xl font-bold">الجلسة التعريفية</h3>
+                                    <p class="text-sm">10 دقائق سريعة ومركزة</p>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <span class="mobile-package-price">مجاناً</span>
+                            </div>
+                            <div class="highlight-box mb-6">
+                                ميزات إضافية لفترة محدودة!
+                            </div>
+                            
+                            <div class="space-y-3 mb-8">
+                                <div class="mobile-package-feature">
+                                    <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                    <span>تقييم سريع للسيرة الذاتية</span>
+                                </div>
+                                <div class="mobile-package-feature">
+                                    <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                    <span>تحديد أهم 3 نقاط للتحسين</span>
+                                </div>
+                                <div class="mobile-package-feature">
+                                    <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                    <span>الإجابة على سؤال واحد محوري</span>
+                                </div>
+                                <div class="mobile-package-feature">
+                                    <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                    <span>فحص الكلمات المفتاحية (ATS)</span>
+                                </div>
+                                <div class="mobile-package-feature">
+                                    <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                    <span>مراجعة سريعة لملف لينكدإن</span>
+                                </div>
+                            </div>
+                            <button onclick="openCvBookingForPackage('الجلسة التعريفية المجانية', '0')" class="mobile-package-button">
+                                احجز العرض المحدود
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mobile-package-card featured">
+                         <div class="p-6 md:p-8">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">مراجعة وتحسين CV</h3>
+                                    <p class="text-sm text-white/80">جلسة احترافية (45 دقيقة)</p>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <span class="mobile-package-price text-white">15</span>
+                                <span class="text-lg font-medium text-white/80 mr-1">دينار أردني</span>
+                            </div>
+                            <div class="space-y-3 mb-8">
+                                <div class="mobile-package-feature"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg><span class="text-white">تحليل شامل ومفصل</span></div>
+                                <div class="mobile-package-feature"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg><span class="text-white">إعادة صياغة احترافية</span></div>
+                                <div class="mobile-package-feature"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg><span class="text-white">ضمان التوافق مع أنظمة ATS</span></div>
+                                <div class="mobile-package-feature"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg><span class="text-white">نصائح مخصصة لمجالك</span></div>
+                            </div>
+                            <button onclick="openCvBookingForPackage('مراجعة وتحسين CV', '15')" class="mobile-package-button secondary">
+                                احجز هذه الجلسة
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mobile-package-card">
+                        <div class="p-6 md:p-8">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold" style="color: var(--text-dark);">الباقة الشاملة للخريجين</h3>
+                                    <p class="text-sm" style="color: var(--text-light);">تجهيز كامل لسوق العمل</p>
+                                </div>
+                            </div>
+                             <div class="mb-6">
+                                <span class="mobile-package-price text-indigo-600">40</span>
+                                <span class="text-lg font-medium mr-1" style="color: var(--text-light);">دينار أردني</span>
+                            </div>
+                            <div class="space-y-3 mb-8">
+                                <div class="mobile-package-feature"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg><span style="color: var(--text-dark);">إنشاء سيرة ذاتية من الصفر</span></div>
+                                <div class="mobile-package-feature"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg><span style="color: var(--text-dark);">كتابة خطاب تغطية (Cover Letter)</span></div>
+                                <div class="mobile-package-feature"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg><span style="color: var(--text-dark);">تحسين كامل لملف LinkedIn</span></div>
+                                <div class="mobile-package-feature"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg><span style="color: var(--text-dark);">جلسة تحضير للمقابلات (30 دقيقة)</span></div>
+                            </div>
+                            <button onclick="openCvBookingForPackage('الباقة الشاملة للخريجين', '40')" class="mobile-package-button primary">
+                                اختر الباقة الشاملة
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section id="how-it-works" class="py-16 md:py-20">
+			<div class="container mx-auto px-6 text-center">
+				<div class="reveal">
+					<h2 class="section-title mb-4">العملية في 3 خطوات بسيطة</h2>
+				</div>
+				<div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center reveal">
+					<div class="step-card">
+						<div class="step-icon">
+							<i class="fas fa-calendar-check"></i>
+						</div>
+						<h3 class="step-title">1. احجز جلستك</h3>
+						<p class="step-description">اختر الباقة التي تناسب احتياجك واملأ النموذج السريع لحجز موعدك.</p>
+					</div>
+					<div class="step-card">
+						<div class="step-icon">
+							<i class="fas fa-upload"></i>
+						</div>
+						<h3 class="step-title">2. أرفق ملفاتك</h3>
+						<p class="step-description">ارفع سيرتك الذاتية الحالية وأي ملفات أخرى (مثل إعلان وظيفي) ليراجعها المرشد قبل الجلسة.</p>
+					</div>
+					<div class="step-card">
+						<div class="step-icon">
+							<i class="fas fa-lightbulb"></i>
+						</div>
+						<h3 class="step-title">3. ابدأ التحسين</h3>
+						<p class="step-description">قابل مرشدك في الموعد المحدد واحصل على تحليل احترافي وخطة عمل واضحة لتطوير سيرتك الذاتية.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+        <section id="testimonials-cv" class="py-16 md:py-28" style="background: var(--background);">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto reveal">
+                    <h2 class="section-title">ماذا قالوا عن خدمة السيرة الذاتية؟</h2>
+                </div>
+
+                <div class="mt-12 md:mt-16 reveal max-w-2xl mx-auto">
+                    <div class="testimonial-card active testimonial-card-gradient">
+                        <p class="text-lg md:text-xl font-medium" style="color: var(--text-dark);">
+                            "بفضل مراجعتهم، حصلت على سيرة ذاتية متوافقة مع ATS ساعدتني في الحصول على 3 مقابلات عمل في أسبوع واحد. الخدمة ممتازة والمرشد كان خبيراً جداً."
+                        </p>
+                        <div class="testimonial-avatar">أ</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="faq-cv" class="py-16 md:py-28" style="background: var(--background-secondary);">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto reveal">
+                    <h2 class="section-title">أسئلة شائعة حول خدمة CV</h2>
+                    <p class="mt-4" style="color: var(--text-light);">إجابات لأهم استفساراتك حول تحسين السيرة الذاتية.</p>
+                </div>
+
+                <div class="mt-12 max-w-3xl mx-auto space-y-4 reveal" id="faq-accordion-cv">
+                    <div class="accordion-item">
+                        <button class="accordion-question">
+                            <span>ما هو نظام ATS ولماذا هو مهم؟</span>
+                            <div class="accordion-icon">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </button>
+                        <div class="accordion-answer">
+                            <div class="p-6">
+                                <p>نظام تتبع المتقدمين (ATS) هو برنامج تستخدمه الشركات لفلترة السير الذاتية قبل أن تصل ليد إنسان. إذا لم تكن سيرتك الذاتية متوافقة معه، قد يتم رفضك تلقائياً. نحن نضمن أن تكون سيرتك متوافقة 100%.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <button class="accordion-question">
+                            <span>هل تكتبون السيرة الذاتية من الصفر؟</span>
+                            <div class="accordion-icon">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </button>
+                        <div class="accordion-answer">
+                            <div class="p-6">
+                                <p>نعم، "الباقة الشاملة للخريجين" تتضمن كتابة سيرة ذاتية كاملة من الصفر بناءً على جلسة تحليل معك. أما باقة "مراجعة وتحسين CV" فتركز على تطوير سيرتك الذاتية الحالية.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-question">
+                            <span>متى سأتسلم النسخة النهائية؟</span>
+                             <div class="accordion-icon">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </button>
+                        <div class="accordion-answer">
+                             <div class="p-6">
+                                <p>بعد الجلسة مباشرة، سيقوم المرشد بإجراء التعديلات المتفق عليها وإرسال النسخة المحدثة لك خلال 48 ساعة عمل.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </main>
+    
+    <footer class="py-12 w-full text-white" style="background: var(--dark-bg);">
+        <div class="container mx-auto px-6">
+            <div class="mt-10 border-t border-slate-700 pt-6 text-center text-sm text-slate-400">
+                <p>&copy; جميع الحقوق محفوظة لمنصة مسار 2025.</p>
+            </div>
+        </div>
+    </footer>
+
+<div id="freeCVModal" class="modal">
+    <div class="modal-content">
+        <button class="close-modal" onclick="closeFreeCVModal()">&times;</button>
+        <h2 class="text-2xl font-bold mb-6 text-center" style="color: var(--text-dark);">
+            طلب خدمة السيرة الذاتية
+        </h2>
+        
+        <form id="freeCVForm">
+    <div class="form-group">
+        <label for="cvFullName">الاسم الكامل</label>
+        <input type="text" 
+               id="cvFullName" 
+               name="fullName" 
+               required 
+               class="form-control">
+    </div>
+    
+    <div class="form-group">
+        <label for="cvEmail">البريد الإلكتروني</label>
+        <input type="email" 
+               id="cvEmail" 
+               name="email" 
+               required 
+               class="form-control">
+    </div>
+    
+    <div class="form-group">
+        <label for="cvPhone">رقم الهاتف</label>
+        <input type="tel" 
+               id="cvPhone" 
+               name="phone" 
+               required 
+               class="form-control">
+    </div>
+    
+    <div class="form-group">
+        <label for="cvCurrentLevel">مستواك الوظيفي</label>
+        <select id="cvCurrentLevel" 
+                name="currentLevel" 
+                class="form-control">
+            <option value="">-- اختر --</option>
+            <option value="student">طالب</option>
+            <option value="fresh_graduate">خريج حديث</option>
+            <option value="experienced">موظف</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="cvTargetJobTitle">المسمى الوظيفي المستهدف</label>
+        <input type="text" 
+               id="cvTargetJobTitle" 
+               name="targetJobTitle" 
+               class="form-control">
+    </div>
+    
+    <div class="form-group">
+        <label for="cvYearsOfExperience">سنوات الخبرة</label>
+        <input type="number" 
+               id="cvYearsOfExperience" 
+               name="yearsOfExperience" 
+               class="form-control">
+    </div>
+    
+    <div class="form-group">
+        <label for="cvLinkedinProfile">رابط LinkedIn (اختياري)</label>
+        <input type="url" 
+               id="cvLinkedinProfile" 
+               name="linkedinProfile" 
+               class="form-control">
+    </div>
+    
+    <div class="form-group">
+        <label for="cvFile">ارفع سيرتك الذاتية (اختياري)</label>
+        <input type="file" 
+               id="cvFile" 
+               name="cvFile" 
+               accept=".pdf,.doc,.docx" 
+               class="form-control">
+    </div>
+    
+    <div class="form-group">
+        <label for="cvNotes">ملاحظات</label>
+        <textarea id="cvNotes" 
+                  name="notes" 
+                  rows="3" 
+                  class="form-control"></textarea>
+    </div>
+    
+    <input type="hidden" name="packageName" value="طلب سيرة ذاتية">
+    <input type="hidden" name="packagePrice" value="0">
+    
+    <button type="submit" class="btn-primary w-full">
+        <i class="fas fa-paper-plane ml-2"></i>
+        إرسال الطلب
+    </button>
+</form>
+        <p class="text-center mt-4 text-sm" style="color: var(--text-light);">
+            سيتم التواصل معك خلال 24 ساعة لتأكيد الحجز.
+        </p>
+    </div>
+</div>
+
+    
+
+    <script src="mind.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // تفعيل أكورديون الأسئلة الشائعة
+            const accordionItems = document.querySelectorAll('#faq-accordion-cv .accordion-item');
+            accordionItems.forEach(item => {
+                const question = item.querySelector('.accordion-question');
+                const answer = item.querySelector('.accordion-answer');
+
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    
+                    // إغلاق جميع العناصر الأخرى
+                    accordionItems.forEach(otherItem => {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.accordion-answer').style.maxHeight = null;
+                    });
+
+                    // فتح العنصر الحالي إذا لم يكن مفتوحاً
+                    if (!isActive) {
+                        item.classList.add('active');
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="mind.js"></script>
+
+</body>
+</html>
