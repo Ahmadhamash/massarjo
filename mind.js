@@ -114,11 +114,11 @@ function updateUIForLoggedInUser() {
         if (!document.getElementById('mobileUserMenuContainer')) {
             const mobileHTML = `
                 <div id="mobileUserMenuContainer" class="relative">
-                    <button id="mobileProfileBtn" class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-indigo-500 focus:outline-none">
+                    <button id="mobileProfileBtn" class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-indigo-500 focus:outline-none z-50 relative">
                         <img src="${avatarUrl}" class="w-full h-full rounded-full object-cover" alt="User">
                     </button>
                     
-                    <div id="mobileDropdown" class="hidden absolute top-14 left-[-10px] w-64 bg-white rounded-xl shadow-2xl border border-gray-200 z-[999999]">
+                    <div id="mobileDropdown" class="hidden fixed top-20 left-4 right-4 bg-white rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.2)] border border-gray-200 z-[9999999]">
                         
                         <div class="p-4 border-b border-gray-100 bg-gray-50 rounded-t-xl text-center">
                             <p class="font-bold text-gray-900">${currentUser.name}</p>
@@ -127,21 +127,21 @@ function updateUIForLoggedInUser() {
 
                         <div class="py-2">
                             <button onclick="handleMobileNav('profile')" class="w-full text-right px-4 py-3 text-sm text-gray-700 hover:bg-indigo-50 border-b border-gray-50 flex items-center gap-3">
-                                👤 <span>الملف الشخصي</span>
+                                <span class="text-xl">👤</span> <span class="font-bold">الملف الشخصي</span>
                             </button>
                             
                             <button onclick="handleMobileNav('sessions')" class="w-full text-right px-4 py-3 text-sm text-gray-700 hover:bg-indigo-50 border-b border-gray-50 flex items-center gap-3">
-                                📅 <span>جلساتي</span>
+                                <span class="text-xl">📅</span> <span class="font-bold">جلساتي</span>
                             </button>
 
                             <button onclick="handleMobileNav('orders')" class="w-full text-right px-4 py-3 text-sm text-gray-700 hover:bg-indigo-50 border-b border-gray-50 flex items-center gap-3">
-                                🛍️ <span>طلباتي</span>
+                                <span class="text-xl">📦</span> <span class="font-bold">طلباتي</span>
                             </button>
                         </div>
 
-                        <div class="p-2 border-t border-gray-100">
-                            <button onclick="logout()" class="w-full text-center px-4 py-2 text-sm text-white bg-red-500 hover:bg-red-600 rounded-lg font-bold">
-                                تسجيل الخروج
+                        <div class="p-3 border-t border-gray-100 bg-red-50 rounded-b-xl">
+                            <button onclick="logout()" class="w-full text-center px-4 py-2 text-sm text-red-600 hover:bg-red-100 rounded-lg font-bold flex items-center justify-center gap-2">
+                                <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
                             </button>
                         </div>
                     </div>
