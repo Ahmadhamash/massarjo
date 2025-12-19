@@ -4594,102 +4594,106 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 
 
-/* ==============================================================
-   🚀 الحل السحري: زر إغلاق عائم يظهر فوق كل شيء (Mobile Only)
-   ============================================================== */
+/* ==========================================================================
+   🚨 زر الإغلاق "المنقذ" (Global Emergency Close Button for Mobile) 🚨
+   يظهر هذا الزر تلقائياً عند فتح أي نافذة على الموبايل ليضمن القدرة على الإغلاق
+   ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. إنشاء الزر برمجياً لضمان عدم تأثره بأي CSS قديم
-    const globalBtn = document.createElement('button');
-    globalBtn.id = 'globalFloatingClose';
-    globalBtn.innerHTML = `
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-    `;
+    // 1. إنشاء الزر برمجياً (لن يتأثر بأخطاء التصميم القديمة)
+    const emergencyBtn = document.createElement('button');
+    emergencyBtn.id = 'emergencyCloseBtn';
+    emergencyBtn.innerHTML = '✕'; // علامة X واضحة
     
-    // 2. تصميم الزر (CSS in JS) ليكون ظاهراً 100%
-    Object.assign(globalBtn.style, {
+    // 2. تصميم الزر ليكون مستحيلاً عدم رؤيته
+    Object.assign(emergencyBtn.style, {
         position: 'fixed',
-        top: '20px',           // مسافة من الأعلى
-        left: '20px',          // مسافة من اليسار
-        width: '45px',
-        height: '45px',
+        top: '20px',
+        left: '20px',
+        width: '50px',
+        height: '50px',
         backgroundColor: '#ffffff',
-        color: '#000000',
+        color: '#ff0000',          /* لون أحمر ليكون واضحاً جداً */
+        border: '2px solid #ff0000',
         borderRadius: '50%',
-        border: '2px solid #e2e8f0',
-        boxShadow: '0 10px 25px rgba(0,0,0,0.5)', // ظل قوي
-        zIndex: '2147483647',  // أعلى طبقة في المتصفح
-        display: 'none',       // مخفي افتراضياً
+        fontSize: '28px',
+        fontWeight: 'bold',
+        zIndex: '2147483647',      /* أعلى طبقة في الوجود */
+        display: 'none',           /* مخفي افتراضياً */
         alignItems: 'center',
         justifyContent: 'center',
+        boxShadow: '0 5px 20px rgba(0,0,0,0.5)',
         cursor: 'pointer',
         webkitTapHighlightColor: 'transparent'
     });
 
-    // إضافة الزر للصفحة
-    document.body.appendChild(globalBtn);
+    document.body.appendChild(emergencyBtn);
 
-    // 3. مراقب ذكي يكتشف متى تفتح أي نافذة
-    function checkActiveModals() {
-        // قائمة بمعرفات (IDs) جميع الصفحات المنبثقة في الموقع
-        const modalIds = [
-            'purchasePage', 
-            'treePlanPage', 
-            'hollandAssessmentPage', 
-            'interviewCoachPage',
-            'cvBookingModal',
-            'loginModal',
-            'addUserModal'
-        ];
+    // 3. قائمة بكل النوافذ التي نريد مراقبتها
+    const modalIds = [
+        'purchasePage', 
+        'treePlanPage', 
+        'hollandAssessmentPage', 
+        'interviewCoachPage',
+        'cvBookingModal',
+        'multiStepFormModal', 
+        'userSessionsModal',
+        'addPackageModal',
+        'addUserModal',
+        'addMentorModal',
+        'addSessionModal'
+    ];
 
-        let isActive = false;
+    // 4. دالة تفحص كل نصف ثانية: "هل هناك نافذة مفتوحة؟"
+    function checkOpenModals() {
+        // يعمل فقط على الموبايل
+        if (window.innerWidth > 768) {
+            emergencyBtn.style.display = 'none';
+            return;
+        }
 
-        // فحص كل النوافذ هل هناك واحدة مفتوحة؟
+        let isAnyModalOpen = false;
+
         modalIds.forEach(id => {
             const el = document.getElementById(id);
             if (el) {
                 const style = window.getComputedStyle(el);
-                // الشروط التي تدل على أن النافذة مفتوحة
-                if (style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0') {
-                    isActive = true;
-                }
-                // فحص الكلاسات أيضاً
-                if (el.classList.contains('active') || el.classList.contains('show')) {
-                    isActive = true;
+                // إذا كان العنصر ظاهراً (Display ليس none) أو لديه كلاس active
+                if ((style.display !== 'none' && style.visibility !== 'hidden') || el.classList.contains('active')) {
+                    isAnyModalOpen = true;
                 }
             }
         });
 
-        // إظهار أو إخفاء الزر بناءً على النتيجة
-        if (isActive && window.innerWidth <= 768) {
-            globalBtn.style.display = 'flex';
-        } else {
-            globalBtn.style.display = 'none';
-        }
+        // إظهار أو إخفاء الزر بناءً على الفحص
+        emergencyBtn.style.display = isAnyModalOpen ? 'flex' : 'none';
     }
 
-    // فحص الحالة كل نصف ثانية (حل مضمون 100%)
-    setInterval(checkActiveModals, 500);
+    // تشغيل الفحص بشكل مستمر
+    setInterval(checkOpenModals, 500);
 
-    // 4. وظيفة الزر عند الضغط: إغلاق كل شيء!
-    globalBtn.addEventListener('click', function(e) {
+    // 5. عند الضغط على الزر: أغلق كل شيء!
+    emergencyBtn.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
-        
-        // إغلاق جميع النوافذ المعروفة
-        const allModals = document.querySelectorAll('.modal, .admin-modal, .purchase-page, .tree-plan-page, .holland-assessment-page');
-        allModals.forEach(modal => {
-            modal.style.display = 'none';
-            modal.classList.remove('active', 'show');
+
+        // إخفاء جميع النوافذ المعروفة
+        modalIds.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.style.display = 'none';
+                el.classList.remove('active');
+            }
         });
 
-        // إعادة تفعيل سكرول الصفحة الرئيسية
+        // إغلاق أي نافذة أخرى تعتمد على الكلاسات العامة
+        document.querySelectorAll('.modal, .admin-modal').forEach(m => m.style.display = 'none');
+
+        // إعادة تفعيل السكرول للصفحة الأصلية
         document.body.classList.remove('overflow-hidden');
         document.body.style.overflow = '';
         
         // إخفاء الزر نفسه
-        globalBtn.style.display = 'none';
+        emergencyBtn.style.display = 'none';
     });
 });
