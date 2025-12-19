@@ -320,7 +320,7 @@ document.getElementById('loginForm')?.addEventListener('submit', function(e) {
                 // مرشد → تحويل إلى لوحة المرشد
                 showNotification(`مرحباً بك ${currentUser.name}!`, 'success');
                 // ✅ التعديل هنا: أضفنا / في البداية
-                window.location.href = '/mentor-dashboard.html';
+                window.location.href = '/mentor-dashboard';
             } else {
                 // مستخدم عادي
                 showNotification(`مرحباً بك ${currentUser.name}!`, 'success');
@@ -530,7 +530,7 @@ function showMentorProfile(mentorId) {
     localStorage.setItem('selectedMentor', JSON.stringify(mentor));
 
     // نروح على صفحة بروفايل المرشد
-    window.location.href = `mentor-profile.html?id=${mentorId}`;
+    window.location.href = `mentor-profile?id=${mentorId}`;
 }
 
 
@@ -4012,7 +4012,7 @@ function closeFreeCVModal() {
 // فتح النموذج
 // استبدل هذه الدالة في mind.js
 function openCVBookingModal() {
-    window.location.href = 'cv-booking.html';
+    window.location.href = 'cv-booking';
 }
 
 // إغلاق النموذج
