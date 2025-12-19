@@ -1,4 +1,30 @@
+html, body {
+    overflow-x: hidden !important; /* يمنع السكرول الأفقي */
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+}
 
+/* حل خاص للموبايل لضمان أن الحاويات لا تخرج عن الشاشة */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        width: 100% !important;
+        max-width: 100vw !important;
+        overflow-x: hidden;
+    }
+    
+    /* إصلاح خاص للكروت والسكاشن */
+    .mentor-sidebar-card, 
+    .purchase-container,
+    .admin-panel {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}
         :root {
             --primary-dark: #1e1b4b;
             --primary: #4f46e5;
