@@ -66,125 +66,118 @@ async function deletePackage(packageId) {
 
 // mind.js
 
-// mind.js
 function updateUIForLoggedInUser() {
+    // صورة افتراضية في حال عدم وجود صورة
     const avatarUrl = currentUser.avatar || 'https://placehold.co/100x100/e0e7ff/4338ca?text=User';
     
-    // ============================================
-    // 1. معالجة نسخة الكمبيوتر (Desktop) 💻
-    // ============================================
-    const desktopContainer = document.querySelector('.hidden.md\\:block .flex.items-center.gap-4');
-    
-    if (desktopContainer) {
-        // حذف زر تسجيل الدخول القديم إن وجد
-        const oldLoginBtn = desktopContainer.querySelector('button[onclick="openLoginModal()"]');
-        if (oldLoginBtn) oldLoginBtn.remove();
-
-        // التأكد من عدم تكرار الزر
-        if (!document.getElementById('userMenuBtnDesktop')) {
-            const desktopHTML = `
-                <div class="relative inline-block text-left">
-                    <button id="userMenuBtnDesktop" class="flex items-center gap-2 focus:outline-none hover:bg-slate-800 p-2 rounded-lg transition-all cursor-pointer">
-                        <img src="${avatarUrl}" class="w-10 h-10 rounded-full border-2 border-indigo-600 object-cover" alt="User">
-                        <span class="font-bold text-white">${currentUser.name.split(' ')[0]}</span>
-                        <i class="fas fa-chevron-down text-sm text-gray-400"></i>
-                    </button>
-                    <div id="userDropdownDesktop" class="hidden absolute left-0 mt-2 w-56 bg-white rounded-xl shadow-2xl py-2 z-50 border border-gray-100 transform origin-top-left">
-                        <div class="px-4 py-3 border-b border-gray-100 bg-slate-50">
-                            <p class="text-sm font-bold text-gray-900">${currentUser.name}</p>
-                            <p class="text-xs text-gray-500 truncate">${currentUser.email}</p>
-                        </div>
-                        <a href="#" onclick="openUserSessionsModal()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors">
-                            <i class="fas fa-calendar-check w-5"></i> جلساتي
-                        </a>
-                        <hr class="my-1 border-gray-100">
-                        <button onclick="logout()" class="block w-full text-right px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors">
-                            <i class="fas fa-sign-out-alt w-5"></i> تسجيل الخروج
-                        </button>
+    // ===============================================
+    // 1. نسخة الكمبيوتر (Desktop) - كما هي
+    // ===============================================
+    const desktopLoginBtn = document.querySelector('.hidden.md\\:block [onclick="openLoginModal()"]');
+    if (desktopLoginBtn) {
+        desktopLoginBtn.outerHTML = `
+            <div class="relative group">
+                <button class="flex items-center gap-2 font-semibold transition-colors focus:outline-none" style="color: var(--text-dark);">
+                    <img src="${avatarUrl}" class="w-8 h-8 rounded-full border border-indigo-500 object-cover">
+                    <span class="hidden md:inline">${currentUser.name.split(' ')[0]}</span>
+                    <i class="fas fa-chevron-down text-xs"></i>
+                </button>
+                <div class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-100 hidden group-hover:block z-50">
+                    <div class="p-3 border-b bg-gray-50 rounded-t-lg">
+                        <p class="font-bold text-sm text-gray-800">${currentUser.name}</p>
+                    </div>
+                    <a href="javascript:void(0)" onclick="showUserProfile()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50">👤 الملف الشخصي</a>
+                    <a href="javascript:void(0)" onclick="showUserSessions()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50">📅 جلساتي</a>
+                    <a href="javascript:void(0)" onclick="showUserOrders()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50">🛍️ طلباتي</a>
+                    <div class="border-t">
+                        <a href="javascript:void(0)" onclick="logout()" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50">🚪 تسجيل الخروج</a>
                     </div>
                 </div>
-            `;
-            // إضافة الزر في بداية الحاوية
-            desktopContainer.insertAdjacentHTML('afterbegin', desktopHTML);
-
-            // تفعيل حدث الضغط للكمبيوتر
-            setTimeout(() => {
-                document.getElementById('userMenuBtnDesktop').addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    document.getElementById('userDropdownDesktop').classList.toggle('hidden');
-                });
-            }, 100);
-        }
+            </div>
+        `;
     }
 
-    // ============================================
-    // 2. معالجة نسخة الموبايل (Mobile) 📱
-    // ============================================
-    const mobileContainer = document.querySelector('.md\\:hidden .flex.items-center.gap-4');
+    // ===============================================
+    // 2. نسخة الموبايل (Mobile) - التعديل الجذري
+    // ===============================================
+    // نبحث عن زر الدخول في الموبايل
+    const mobileLoginBtn = document.querySelector('.md\\:hidden [onclick="openLoginModal()"]');
     
-    if (mobileContainer) {
-        // حذف زر الدخول القديم
-        const oldMobileBtn = mobileContainer.querySelector('button[onclick="openLoginModal()"]');
-        if (oldMobileBtn) oldMobileBtn.style.display = 'none'; // نخفيه بدلاً من حذفه لتجنب المشاكل
+    // أو نبحث عن الحاوية إذا كان الزر قد تم استبداله سابقاً
+    const mobileContainer = document.querySelector('.md\\:hidden .flex.items-center.gap-4');
 
-        // التأكد من عدم تكرار الزر
-        if (!document.getElementById('userMenuBtnMobile')) {
-            // داخل دالة updateUIForLoggedInUser - قسم الموبايل
+    if (mobileLoginBtn || mobileContainer) {
+        // إذا وجدنا الزر القديم، نحذفه
+        if (mobileLoginBtn) mobileLoginBtn.remove();
+
+        // نتأكد أننا لم نضف القائمة مسبقاً
+        if (!document.getElementById('mobileUserMenuContainer')) {
             const mobileHTML = `
-                <div class="relative inline-block" id="mobileProfileWrapper">
-                    <button id="userMenuBtnMobile" class="relative z-50 p-1 focus:outline-none cursor-pointer select-none" style="-webkit-tap-highlight-color: transparent;">
-                        <img src="${avatarUrl}" class="w-10 h-10 rounded-full border-2 border-indigo-600 object-cover pointer-events-none" alt="User">
+                <div id="mobileUserMenuContainer" class="relative">
+                    <button id="mobileProfileBtn" class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-indigo-500 focus:outline-none">
+                        <img src="${avatarUrl}" class="w-full h-full rounded-full object-cover" alt="User">
                     </button>
                     
-                    <div id="userDropdownMobile" class="hidden absolute top-14 left-[-10px] w-56 bg-white rounded-xl shadow-2xl py-2 z-[99999] border border-gray-200">
+                    <div id="mobileDropdown" class="hidden absolute top-14 left-[-10px] w-64 bg-white rounded-xl shadow-2xl border border-gray-200 z-[999999]">
                         
-                        <div class="px-4 py-3 border-b border-gray-100 bg-gray-50 text-center">
-                            <p class="text-sm font-bold text-gray-900">${currentUser.name}</p>
-                            <p class="text-xs text-gray-500 truncate">${currentUser.email}</p>
+                        <div class="p-4 border-b border-gray-100 bg-gray-50 rounded-t-xl text-center">
+                            <p class="font-bold text-gray-900">${currentUser.name}</p>
+                            <p class="text-xs text-gray-500">${currentUser.email}</p>
                         </div>
 
-                        <div class="flex flex-col text-right">
-                            <a href="#" onclick="showUserProfile()" class="block px-4 py-3 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors border-b border-gray-50">
-                                👤 الملف الشخصي (تعديل)
-                            </a>
+                        <div class="py-2">
+                            <button onclick="handleMobileNav('profile')" class="w-full text-right px-4 py-3 text-sm text-gray-700 hover:bg-indigo-50 border-b border-gray-50 flex items-center gap-3">
+                                👤 <span>الملف الشخصي</span>
+                            </button>
                             
-                            <a href="#" onclick="showUserOrders()" class="block px-4 py-3 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors border-b border-gray-50">
-                                📦 طلباتي
-                            </a>
+                            <button onclick="handleMobileNav('sessions')" class="w-full text-right px-4 py-3 text-sm text-gray-700 hover:bg-indigo-50 border-b border-gray-50 flex items-center gap-3">
+                                📅 <span>جلساتي</span>
+                            </button>
 
-                            <a href="#" onclick="showUserSessions()" class="block px-4 py-3 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors border-b border-gray-100">
-                                📅 جلساتي
-                            </a>
+                            <button onclick="handleMobileNav('orders')" class="w-full text-right px-4 py-3 text-sm text-gray-700 hover:bg-indigo-50 border-b border-gray-50 flex items-center gap-3">
+                                🛍️ <span>طلباتي</span>
+                            </button>
                         </div>
 
-                        <button onclick="logout()" class="block w-full text-right px-4 py-3 text-sm text-red-600 hover:bg-red-50 font-bold">
-                            🚪 تسجيل الخروج
-                        </button>
+                        <div class="p-2 border-t border-gray-100">
+                            <button onclick="logout()" class="w-full text-center px-4 py-2 text-sm text-white bg-red-500 hover:bg-red-600 rounded-lg font-bold">
+                                تسجيل الخروج
+                            </button>
+                        </div>
                     </div>
                 </div>
             `;
             
-            // إضافة الزر قبل زر الهامبرغر
-            mobileContainer.insertAdjacentHTML('afterbegin', mobileHTML);
+            // إضافة الكود قبل زر الهامبرغر
+            const hamburger = document.getElementById('hamburger-button');
+            if (hamburger) {
+                hamburger.insertAdjacentHTML('beforebegin', mobileHTML);
+            } else if (mobileContainer) {
+                mobileContainer.innerHTML += mobileHTML;
+            }
 
-            // تفعيل حدث الضغط للموبايل
+            // تفعيل زر القائمة (Click Event)
             setTimeout(() => {
-                const btnMobile = document.getElementById('userMenuBtnMobile');
-                const menuMobile = document.getElementById('userDropdownMobile');
+                const btn = document.getElementById('mobileProfileBtn');
+                const menu = document.getElementById('mobileDropdown');
                 
-                if (btnMobile && menuMobile) {
-                    btnMobile.addEventListener('click', function(e) {
+                if (btn && menu) {
+                    btn.addEventListener('click', (e) => {
                         e.stopPropagation();
-                        e.preventDefault(); // مهم جداً للموبايل
-                        console.log('Mobile menu clicked'); // للتأكد
-                        
                         // إغلاق أي قوائم أخرى
-                        const allDropdowns = document.querySelectorAll('[id^="userDropdown"]');
-                        allDropdowns.forEach(d => {
-                            if (d.id !== 'userDropdownMobile') d.classList.add('hidden');
+                        document.querySelectorAll('.hidden').forEach(el => {
+                            if(el !== menu && !el.classList.contains('md:hidden')) {
+                                // لا نفعل شيئاً لباقي العناصر
+                            }
                         });
+                        menu.classList.toggle('hidden');
+                    });
 
-                        menuMobile.classList.toggle('hidden');
+                    // إغلاق القائمة عند الضغط خارجها
+                    document.addEventListener('click', (e) => {
+                        if (!menu.contains(e.target) && !btn.contains(e.target)) {
+                            menu.classList.add('hidden');
+                        }
                     });
                 }
             }, 500);
@@ -192,6 +185,17 @@ function updateUIForLoggedInUser() {
     }
 }
 
+// دالة مساعدة لتشغيل الروابط وإغلاق القائمة في الموبايل
+function handleMobileNav(action) {
+    const menu = document.getElementById('mobileDropdown');
+    if (menu) menu.classList.add('hidden'); // أغلق القائمة أولاً
+
+    setTimeout(() => {
+        if (action === 'profile') showUserProfile();
+        if (action === 'sessions') showUserSessions();
+        if (action === 'orders') showUserOrders();
+    }, 100);
+}
 // إغلاق القوائم عند الضغط في أي مكان بالشاشة
 document.addEventListener('click', function(e) {
     if (!e.target.closest('#userMenuBtnDesktop') && !e.target.closest('#userDropdownDesktop')) {
