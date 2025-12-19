@@ -3765,59 +3765,70 @@ html, body {
     }
 }
 
-/* =======================================================
-   🔴 الحل النهائي والشامل لأزرار الإغلاق في الموبايل
-   ======================================================= */
+/* =================================================================
+   🔴 الحل النهائي الشامل لأزرار الإغلاق في الموبايل (Force Visible)
+   ================================================================= */
 
 @media (max-width: 768px) {
     
-    /* تجميع كل أنواع أزرار الإغلاق في الموقع */
-    .close-modal,                  /* النوافذ العادية والآدمن */
+    /* 1. استهداف جميع أزرار الإغلاق في الموقع */
+    .close-modal,                  /* النوافذ العادية */
     .cv-modal-close,               /* نافذة السيرة الذاتية */
     .close-tree-plan,              /* نافذة الخطة الشجرية */
     .purchase-header button,       /* صفحة الشراء */
-    .holland-header button         /* صفحات هولاند والمقابلات */
+    .holland-header button,        /* صفحات هولاند */
+    .admin-modal .close-modal      /* لوحة التحكم */
     {
-        position: fixed !important;
-        top: 20px !important;       /* مسافة آمنة من الأعلى */
-        left: 20px !important;      /* مسافة آمنة من اليسار */
+        position: fixed !important;       /* تثبيت إجباري */
+        top: 25px !important;             /* مسافة من الأعلى */
+        left: 20px !important;            /* مسافة من اليسار */
+        right: auto !important;           /* إلغاء أي محاذاة لليمين */
         
-        /* ضمان الظهور فوق كل شيء (أعلى من الهيدر والقوائم) */
-        z-index: 2147483647 !important; 
+        /* الطبقة الأعلى على الإطلاق */
+        z-index: 2147483647 !important;   
         
-        /* تصميم موحد: دائرة بيضاء واضحة */
+        /* التصميم: دائرة بيضاء واضحة بحدود */
         width: 45px !important;
         height: 45px !important;
+        min-width: 45px !important;       /* لمنع الانكماش */
         background-color: #ffffff !important;
-        color: #000000 !important;
+        border: 2px solid #334155 !important;
         border-radius: 50% !important;
-        border: 2px solid #e2e8f0 !important; /* حدود رمادية للوضوح */
         
-        /* محاذاة الأيقونة في المنتصف */
+        /* محاذاة المحتوى */
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         
-        /* ظل لتمييز الزر عن الخلفية */
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+        /* الظل */
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3) !important;
+        
+        /* الإظهار */
         opacity: 1 !important;
         visibility: visible !important;
+        pointer-events: auto !important;
     }
 
-    /* تكبير الأيقونة داخل الزر لتكون سهلة اللمس */
+    /* 2. إجبار الأيقونة داخل الزر أن تكون سوداء وواضحة */
     .close-modal svg, 
+    .close-modal i,
     .cv-modal-close svg,
     .close-tree-plan i,
     .purchase-header button svg,
     .holland-header button svg {
+        fill: #000000 !important;         /* تعبئة سوداء */
+        color: #000000 !important;        /* لون أسود */
+        stroke: #000000 !important;       /* خط أسود */
         width: 24px !important;
         height: 24px !important;
-        font-size: 24px !important; /* للأيقونات النصية */
+        font-size: 24px !important;
+        display: block !important;
     }
 
-    /* إصلاح خاص لصفحات هولاند والمقابلات لكي لا يختفي الزر تحت المحتوى */
-    .holland-container, 
-    .tree-plan-container {
-        padding-top: 80px !important; /* ترك مسافة للزر في الأعلى */
+    /* 3. إزاحة المحتوى قليلاً لكي لا يغطي الزر على العنوان */
+    .purchase-container, 
+    .tree-plan-container,
+    .holland-container {
+        padding-top: 80px !important;
     }
 }
