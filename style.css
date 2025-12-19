@@ -3664,3 +3664,44 @@ html, body {
         display: none !important; /* إخفاء دوائر الخلفية في الموبايل لأنها تسبب المشكلة */
     }
 }
+
+
+/* =======================================================
+   🔴 إصلاح مشاكل العرض في الموبايل (هام جداً)
+   ======================================================= */
+
+/* 1. منع الصفحة بالكامل من تجاوز عرض الشاشة */
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important; /* يقتل السكرول الأفقي إجبارياً */
+    position: relative;
+}
+
+/* 2. ضبط الحاويات (Containers) في الموبايل */
+@media (max-width: 768px) {
+    .container {
+        width: 100% !important;
+        max-width: 100vw !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        overflow-x: hidden;
+    }
+
+    /* 3. منع العناصر العائمة من الخروج عن الشاشة */
+    .light-effect, 
+    .cv-decoration-circle, 
+    .magic-sparkle {
+        display: none !important; /* نخفي الزخارف الجانبية في الموبايل لأنها سبب المشكلة 90% من الوقت */
+    }
+
+    /* 4. إصلاح الكروت التي قد تكون عريضة جداً */
+    .mobile-package-card, 
+    .admin-card, 
+    .purchase-container {
+        width: auto !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}
