@@ -298,20 +298,9 @@ html, body {
             }
         }
         
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--text-light);
-        }
         
-        .close-modal:hover {
-            color: var(--text-dark);
-        }
+        
+        
 
         /* Enhanced Admin Panel Styles */
         .admin-panel {
@@ -3715,31 +3704,74 @@ html, body {
 @media (max-width: 768px) {
     
     /* 1. إصلاح زر الإغلاق في النوافذ المنبثقة العادية (Modals) */
-    .close-modal, .admin-modal .close-modal {
-        position: fixed !important; /* تثبيت الزر في مكان واحد بالشاشة */
-        top: 15px !important;
-        left: 15px !important;      /* يظهر في الزاوية اليسرى */
-        
-        /* تصميم الزر ليكون دائرة واضحة */
-        width: 40px !important;
-        height: 40px !important;
-        background-color: rgba(255, 255, 255, 0.9) !important; /* خلفية بيضاء ليكون واضحاً */
-        color: #000 !important;     /* لون الـ X أسود */
-        border-radius: 50% !important;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        
-        /* ضمان ظهوره فوق كل شيء */
-        z-index: 9999999 !important; 
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
-    }
-
+    
     /* تكبير حجم حرف X */
-    .close-modal::before {
-        font-size: 24px;
-        font-weight: bold;
+    /* =======================================================
+   🔥 الحل النهائي لمشكلة زر الإغلاق (X) 🔥
+   ======================================================= */
+
+/* 1. تنسيق موحد لجميع أزرار الإغلاق في الموقع */
+.close-modal, 
+.cv-modal-close, 
+.close-tree-plan,
+.purchase-header button,
+.holland-header button {
+    position: fixed !important;
+    top: 20px !important;
+    left: 20px !important;
+    right: auto !important;
+    z-index: 2147483647 !important; /* أعلى طبقة ممكنة */
+    
+    width: 45px !important;
+    height: 45px !important;
+    background-color: #ffffff !important; /* خلفية بيضاء */
+    color: #000000 !important;        /* لون النص أسود */
+    
+    border-radius: 50% !important;
+    border: 2px solid #e2e8f0 !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4) !important;
+    
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    cursor: pointer !important;
+}
+
+/* 2. إجبار الأيقونة الداخلية على الظهور باللون الأسود */
+.close-modal svg, 
+.close-modal i,
+.cv-modal-close svg, 
+.purchase-header button svg,
+.holland-header button svg {
+    fill: #000000 !important;
+    color: #000000 !important;
+    stroke: #000000 !important;
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 24px !important;
+    display: block !important;
+}
+
+/* 3. في حال لم تكن هناك أيقونة، نضع حرف X يدوياً */
+.close-modal:empty::before,
+.cv-modal-close:empty::before {
+    content: "✕" !important; /* علامة X */
+    font-size: 24px !important;
+    font-weight: bold !important;
+    color: #000000 !important;
+    line-height: 1 !important;
+}
+
+/* 4. إزاحة المحتوى للأسفل لكي لا يغطي الزر */
+@media (max-width: 768px) {
+    .purchase-container,
+    .tree-plan-container,
+    .holland-container {
+        padding-top: 80px !important;
     }
+}
 
     /* 2. إصلاح زر الإغلاق في صفحة الشراء الكاملة (Purchase Page) */
     /* نقوم بدفع المحتوى للأسفل قليلاً لكي لا يختفي الزر */
@@ -3765,70 +3797,3 @@ html, body {
     }
 }
 
-/* =================================================================
-   🔴 الحل النهائي الشامل لأزرار الإغلاق في الموبايل (Force Visible)
-   ================================================================= */
-
-@media (max-width: 768px) {
-    
-    /* 1. استهداف جميع أزرار الإغلاق في الموقع */
-    .close-modal,                  /* النوافذ العادية */
-    .cv-modal-close,               /* نافذة السيرة الذاتية */
-    .close-tree-plan,              /* نافذة الخطة الشجرية */
-    .purchase-header button,       /* صفحة الشراء */
-    .holland-header button,        /* صفحات هولاند */
-    .admin-modal .close-modal      /* لوحة التحكم */
-    {
-        position: fixed !important;       /* تثبيت إجباري */
-        top: 25px !important;             /* مسافة من الأعلى */
-        left: 20px !important;            /* مسافة من اليسار */
-        right: auto !important;           /* إلغاء أي محاذاة لليمين */
-        
-        /* الطبقة الأعلى على الإطلاق */
-        z-index: 2147483647 !important;   
-        
-        /* التصميم: دائرة بيضاء واضحة بحدود */
-        width: 45px !important;
-        height: 45px !important;
-        min-width: 45px !important;       /* لمنع الانكماش */
-        background-color: #ffffff !important;
-        border: 2px solid #334155 !important;
-        border-radius: 50% !important;
-        
-        /* محاذاة المحتوى */
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        
-        /* الظل */
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3) !important;
-        
-        /* الإظهار */
-        opacity: 1 !important;
-        visibility: visible !important;
-        pointer-events: auto !important;
-    }
-
-    /* 2. إجبار الأيقونة داخل الزر أن تكون سوداء وواضحة */
-    .close-modal svg, 
-    .close-modal i,
-    .cv-modal-close svg,
-    .close-tree-plan i,
-    .purchase-header button svg,
-    .holland-header button svg {
-        fill: #000000 !important;         /* تعبئة سوداء */
-        color: #000000 !important;        /* لون أسود */
-        stroke: #000000 !important;       /* خط أسود */
-        width: 24px !important;
-        height: 24px !important;
-        font-size: 24px !important;
-        display: block !important;
-    }
-
-    /* 3. إزاحة المحتوى قليلاً لكي لا يغطي الزر على العنوان */
-    .purchase-container, 
-    .tree-plan-container,
-    .holland-container {
-        padding-top: 80px !important;
-    }
-}
