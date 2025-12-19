@@ -3705,3 +3705,62 @@ html, body {
         margin-right: 0 !important;
     }
 }
+
+
+
+/* =======================================================
+   🔴 إصلاح زر الإغلاق (X) في الموبايل
+   ======================================================= */
+
+@media (max-width: 768px) {
+    
+    /* 1. إصلاح زر الإغلاق في النوافذ المنبثقة العادية (Modals) */
+    .close-modal, .admin-modal .close-modal {
+        position: fixed !important; /* تثبيت الزر في مكان واحد بالشاشة */
+        top: 15px !important;
+        left: 15px !important;      /* يظهر في الزاوية اليسرى */
+        
+        /* تصميم الزر ليكون دائرة واضحة */
+        width: 40px !important;
+        height: 40px !important;
+        background-color: rgba(255, 255, 255, 0.9) !important; /* خلفية بيضاء ليكون واضحاً */
+        color: #000 !important;     /* لون الـ X أسود */
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        
+        /* ضمان ظهوره فوق كل شيء */
+        z-index: 9999999 !important; 
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
+    }
+
+    /* تكبير حجم حرف X */
+    .close-modal::before {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    /* 2. إصلاح زر الإغلاق في صفحة الشراء الكاملة (Purchase Page) */
+    /* نقوم بدفع المحتوى للأسفل قليلاً لكي لا يختفي الزر */
+    .purchase-container {
+        padding-top: 60px !important; 
+    }
+
+    /* جعل زر الرجوع في صفحة الشراء عائماً أيضاً */
+    .purchase-header button {
+        position: fixed !important;
+        top: 15px !important;
+        left: 15px !important;
+        background-color: rgba(255, 255, 255, 0.9) !important;
+        color: #000 !important;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999999 !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+}
