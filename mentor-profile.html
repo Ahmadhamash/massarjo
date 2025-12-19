@@ -4,33 +4,281 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>بروفايل المرشد - مسار</title>
-  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css"> <style>
+    /* =========================================
+       تصميم البروفايل الخاص (مدمج هنا لضمان العمل)
+       ========================================= */
+    
+    :root {
+        --primary-dark: #1e1b4b;
+        --primary: #4f46e5;
+        --card-bg: #1e293b;
+        --text-light: #94a3b8;
+        --border-color: #334155;
+    }
+
+    body {
+        background-color: #0f172a;
+        color: #f1f5f9;
+        font-family: 'Tajawal', sans-serif;
+    }
+
+    /* الخلفية العلوية المنحنية */
+    .profile-header-curve {
+        height: 280px;
+        background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+        position: relative;
+        border-bottom-left-radius: 50% 30px;
+        border-bottom-right-radius: 50% 30px;
+        overflow: hidden;
+    }
+
+    /* تأثيرات جمالية للخلفية */
+    .profile-header-curve::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%);
+        animation: rotateBg 60s linear infinite;
+    }
+
+    @keyframes rotateBg { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        color: rgba(255,255,255,0.9);
+        font-weight: bold;
+        text-decoration: none;
+        background: rgba(0,0,0,0.25);
+        padding: 8px 20px;
+        border-radius: 50px;
+        backdrop-filter: blur(5px);
+        transition: all 0.3s ease;
+        z-index: 10;
+        margin-top: 20px;
+    }
+
+    .back-link:hover {
+        background: rgba(255,255,255,0.2);
+        transform: translateX(5px);
+    }
+
+    /* البطاقة الرئيسية العائمة */
+    .profile-main-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 24px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+        overflow: hidden;
+        position: relative;
+        margin-top: -100px; /* لرفع البطاقة للأعلى */
+        margin-bottom: 40px;
+        animation: slideUpFade 0.7s ease-out;
+    }
+
+    @keyframes slideUpFade {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* القسم العلوي (الصورة والاسم) */
+    .profile-intro {
+        padding: 3rem 2rem 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        background: linear-gradient(to bottom, rgba(30, 41, 59, 0.8), transparent);
+    }
+
+    .profile-avatar-container {
+        position: relative;
+        margin-bottom: 1.5rem;
+    }
+
+    .profile-avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 4px solid var(--card-bg);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        object-fit: cover;
+        background-color: #0f172a;
+    }
+
+    .status-dot {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 3px solid var(--card-bg);
+        background-color: #10b981; /* أخضر */
+        box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+    }
+
+    .profile-name {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #ffffff;
+        margin-bottom: 0.5rem;
+    }
+
+    .profile-title {
+        font-size: 1.1rem;
+        color: #c7d2fe;
+        font-weight: 500;
+    }
+
+    /* الخط الفاصل */
+    .profile-divider {
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--border-color), transparent);
+        margin: 0 2rem;
+        opacity: 0.5;
+    }
+
+    /* شبكة المحتوى */
+    .profile-grid {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 3rem;
+        padding: 3rem;
+    }
+
+    /* قسم النبذة */
+    .section-label {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #818cf8;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .bio-text {
+        line-height: 1.8;
+        font-size: 1.1rem;
+        color: #e2e8f0;
+        white-space: pre-line; /* للحفاظ على تنسيق الأسطر */
+    }
+
+    /* البطاقات الجانبية */
+    .detail-card {
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid var(--border-color);
+        padding: 1.25rem;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        transition: transform 0.3s ease;
+    }
+
+    .detail-card:hover {
+        transform: translateX(-5px);
+        border-color: #6366f1;
+        background: rgba(15, 23, 42, 0.8);
+    }
+
+    .detail-icon {
+        width: 50px;
+        height: 50px;
+        background: rgba(79, 70, 229, 0.15);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        color: #818cf8;
+    }
+
+    .detail-info h4 {
+        font-size: 0.9rem;
+        color: var(--text-light);
+        margin-bottom: 4px;
+    }
+
+    .detail-info span {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: white;
+    }
+
+    /* زر الحجز */
+    .book-now-btn {
+        margin-top: 1.5rem;
+        width: 100%;
+        background: linear-gradient(135deg, #4f46e5, #6366f1);
+        color: white;
+        border: none;
+        padding: 1.2rem;
+        border-radius: 16px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
+    }
+
+    .book-now-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(79, 70, 229, 0.5);
+    }
+
+    /* استجابة الموبايل */
+    @media (max-width: 992px) {
+        .profile-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            padding: 2rem;
+        }
+        
+        .profile-details-section {
+            order: -1; /* رفع التفاصيل فوق النبذة في الموبايل */
+        }
+
+        .profile-main-card {
+            margin-top: -80px;
+        }
+    }
+  </style>
 </head>
-<body style="background: var(--background); color: var(--text-dark);">
+<body>
 
   <div class="profile-header-curve">
-    <div class="container mx-auto px-6 h-full flex items-start pt-8">
+    <div class="container mx-auto px-6 h-full flex items-start pt-4">
       <a href="index.html" class="back-link">
         <i class="fas fa-arrow-right ml-2"></i> العودة للرئيسية
       </a>
     </div>
   </div>
 
-  <div class="container mx-auto px-4 sm:px-6 relative" style="margin-top: -100px; padding-bottom: 4rem;">
+  <div class="container mx-auto px-4 sm:px-6 relative">
     
-    <div class="profile-main-card reveal">
+    <div class="profile-main-card">
       
       <div class="profile-intro">
-        <div class="relative">
+        <div class="profile-avatar-container">
           <img id="mentor-avatar" class="profile-avatar" alt="Mentor">
           <div id="status-indicator" class="status-dot" title="متاح"></div>
         </div>
         
-        <div class="profile-titles">
-          <h1 id="mentor-name" class="text-3xl font-bold mb-2 text-white"></h1>
-          <p id="mentor-title" class="text-lg text-indigo-200 font-medium"></p>
-        </div>
+        <h1 id="mentor-name" class="profile-name"></h1>
+        <p id="mentor-title" class="profile-title"></p>
       </div>
 
       <div class="profile-divider"></div>
@@ -47,22 +295,22 @@
         <div class="profile-details-section">
           
           <div class="detail-card">
-            <div class="detail-icon bg-blue-500/10 text-blue-400">
+            <div class="detail-icon">
               <i class="fas fa-briefcase"></i>
             </div>
-            <div>
-              <span class="detail-label">سنوات الخبرة</span>
-              <span id="mentor-exp" class="detail-value"></span>
+            <div class="detail-info">
+              <h4>سنوات الخبرة</h4>
+              <span id="mentor-exp"></span>
             </div>
           </div>
 
           <div class="detail-card">
-            <div class="detail-icon bg-purple-500/10 text-purple-400">
+            <div class="detail-icon">
               <i class="fas fa-layer-group"></i>
             </div>
-            <div>
-              <span class="detail-label">التخصص</span>
-              <span id="mentor-spec" class="detail-value"></span>
+            <div class="detail-info">
+              <h4>التخصص</h4>
+              <span id="mentor-spec"></span>
             </div>
           </div>
 
@@ -75,7 +323,6 @@
       </div>
 
     </div>
-
   </div>
 
   <script>
@@ -92,7 +339,7 @@
       document.getElementById('mentor-name').textContent = mentorData.name || 'مرشد مسار';
       document.getElementById('mentor-title').textContent = mentorData.title || 'مستشار مهني';
       
-      // التعامل مع النبذة الفارغة
+      // التعامل مع النبذة
       const bioText = mentorData.bio && mentorData.bio.trim() !== "" 
           ? mentorData.bio 
           : "لم يقم هذا المرشد بإضافة نبذة تعريفية بعد.";
@@ -108,14 +355,12 @@
           : 'https://placehold.co/300x300/e0e7ff/4338ca?text=' + encodeURIComponent(mentorData.name ? mentorData.name.charAt(0) : 'م');
       avatarEl.src = avatarUrl;
 
-      // حالة النشاط (لون النقطة)
+      // حالة النشاط
       const statusDot = document.getElementById('status-indicator');
-      if (mentorData.status === 'active') {
-        statusDot.style.backgroundColor = '#10b981'; // أخضر
-        statusDot.title = "نشط حالياً";
+      if (mentorData.status === 'active' || !mentorData.status) { // نفترض أنه نشط افتراضياً
+        statusDot.style.backgroundColor = '#10b981';
       } else {
-        statusDot.style.backgroundColor = '#9ca3af'; // رمادي
-        statusDot.title = "غير نشط";
+        statusDot.style.backgroundColor = '#9ca3af';
       }
 
     })();
