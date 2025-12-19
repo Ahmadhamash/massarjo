@@ -3764,3 +3764,60 @@ html, body {
         box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 }
+
+/* =======================================================
+   🔴 الحل النهائي والشامل لأزرار الإغلاق في الموبايل
+   ======================================================= */
+
+@media (max-width: 768px) {
+    
+    /* تجميع كل أنواع أزرار الإغلاق في الموقع */
+    .close-modal,                  /* النوافذ العادية والآدمن */
+    .cv-modal-close,               /* نافذة السيرة الذاتية */
+    .close-tree-plan,              /* نافذة الخطة الشجرية */
+    .purchase-header button,       /* صفحة الشراء */
+    .holland-header button         /* صفحات هولاند والمقابلات */
+    {
+        position: fixed !important;
+        top: 20px !important;       /* مسافة آمنة من الأعلى */
+        left: 20px !important;      /* مسافة آمنة من اليسار */
+        
+        /* ضمان الظهور فوق كل شيء (أعلى من الهيدر والقوائم) */
+        z-index: 2147483647 !important; 
+        
+        /* تصميم موحد: دائرة بيضاء واضحة */
+        width: 45px !important;
+        height: 45px !important;
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        border-radius: 50% !important;
+        border: 2px solid #e2e8f0 !important; /* حدود رمادية للوضوح */
+        
+        /* محاذاة الأيقونة في المنتصف */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        
+        /* ظل لتمييز الزر عن الخلفية */
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    /* تكبير الأيقونة داخل الزر لتكون سهلة اللمس */
+    .close-modal svg, 
+    .cv-modal-close svg,
+    .close-tree-plan i,
+    .purchase-header button svg,
+    .holland-header button svg {
+        width: 24px !important;
+        height: 24px !important;
+        font-size: 24px !important; /* للأيقونات النصية */
+    }
+
+    /* إصلاح خاص لصفحات هولاند والمقابلات لكي لا يختفي الزر تحت المحتوى */
+    .holland-container, 
+    .tree-plan-container {
+        padding-top: 80px !important; /* ترك مسافة للزر في الأعلى */
+    }
+}
