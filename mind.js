@@ -129,21 +129,36 @@ function updateUIForLoggedInUser() {
 
         // التأكد من عدم تكرار الزر
         if (!document.getElementById('userMenuBtnMobile')) {
+            // داخل دالة updateUIForLoggedInUser - قسم الموبايل
             const mobileHTML = `
-                <div class="relative inline-block">
-                    <button id="userMenuBtnMobile" class="relative z-50 p-1 focus:outline-none cursor-pointer" style="-webkit-tap-highlight-color: transparent;">
-                        <img src="${avatarUrl}" class="w-9 h-9 rounded-full border-2 border-indigo-600 object-cover pointer-events-none" alt="User">
+                <div class="relative inline-block" id="mobileProfileWrapper">
+                    <button id="userMenuBtnMobile" class="relative z-50 p-1 focus:outline-none cursor-pointer select-none" style="-webkit-tap-highlight-color: transparent;">
+                        <img src="${avatarUrl}" class="w-10 h-10 rounded-full border-2 border-indigo-600 object-cover pointer-events-none" alt="User">
                     </button>
                     
-                    <div id="userDropdownMobile" class="hidden absolute top-12 left-[-10px] w-48 bg-white rounded-xl shadow-xl py-2 z-[60] border border-gray-200">
-                        <div class="px-4 py-2 border-b border-gray-100 text-center bg-gray-50">
-                            <p class="text-sm font-bold text-gray-800">${currentUser.name.split(' ')[0]}</p>
+                    <div id="userDropdownMobile" class="hidden absolute top-14 left-[-10px] w-56 bg-white rounded-xl shadow-2xl py-2 z-[99999] border border-gray-200">
+                        
+                        <div class="px-4 py-3 border-b border-gray-100 bg-gray-50 text-center">
+                            <p class="text-sm font-bold text-gray-900">${currentUser.name}</p>
+                            <p class="text-xs text-gray-500 truncate">${currentUser.email}</p>
                         </div>
-                        <a href="#" onclick="openUserSessionsModal()" class="block px-4 py-3 text-sm text-gray-700 hover:bg-indigo-50 border-b border-gray-100">
-                            📅 جلساتي
-                        </a>
-                        <button onclick="logout()" class="block w-full text-right px-4 py-3 text-sm text-red-600 hover:bg-red-50">
-                            🚪 خروج
+
+                        <div class="flex flex-col text-right">
+                            <a href="#" onclick="showUserProfile()" class="block px-4 py-3 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors border-b border-gray-50">
+                                👤 الملف الشخصي (تعديل)
+                            </a>
+                            
+                            <a href="#" onclick="showUserOrders()" class="block px-4 py-3 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors border-b border-gray-50">
+                                📦 طلباتي
+                            </a>
+
+                            <a href="#" onclick="showUserSessions()" class="block px-4 py-3 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors border-b border-gray-100">
+                                📅 جلساتي
+                            </a>
+                        </div>
+
+                        <button onclick="logout()" class="block w-full text-right px-4 py-3 text-sm text-red-600 hover:bg-red-50 font-bold">
+                            🚪 تسجيل الخروج
                         </button>
                     </div>
                 </div>
