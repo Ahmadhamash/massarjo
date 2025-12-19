@@ -222,7 +222,7 @@ function initializeEventListeners() {
         document.getElementById('login-form-container').style.display = 'block';
     });
 
-    document.getElementById('loginForm')?.addEventListener('submit', function(e) {
+document.getElementById('loginForm')?.addEventListener('submit', function(e) {
     e.preventDefault();
     const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
@@ -253,7 +253,8 @@ function initializeEventListeners() {
             } else if (currentUser.role === 'mentor') {
                 // مرشد → تحويل إلى لوحة المرشد
                 showNotification(`مرحباً بك ${currentUser.name}!`, 'success');
-                window.location.href = 'mentor-dashboard.html';
+                // ✅ التعديل هنا: أضفنا / في البداية
+                window.location.href = '/mentor-dashboard.html';
             } else {
                 // مستخدم عادي
                 showNotification(`مرحباً بك ${currentUser.name}!`, 'success');
@@ -270,7 +271,6 @@ function initializeEventListeners() {
         btn.disabled = false;
     });
 });
-
     // 5. معالجة نموذج إنشاء حساب جديد (Signup Form Handler)
     document.getElementById('signupForm')?.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -889,71 +889,7 @@ function getSessionStatusText(status) {
 
 
 
-function showMentorProfile(mentorId) {
-  const mentor = allMentorsData.find(m => m._id === mentorId);
-  if (!mentor) {
-    if (typeof showNotification === 'function') {
-      showNotification('لم يتم العثور على بيانات المرشد', 'error');
-    } else {
-      console.error('Mentor not found', mentorId);
-    }
-    return;
-  }
 
-  // لو كان في مودال قديم، احذفيه
-  const oldModal = document.getElementById('mentorProfileModal');
-  if (oldModal) oldModal.remove();
-
-  const avatarUrl =
-    mentor.avatar && mentor.avatar.trim()
-      ? mentor.avatar
-      : 'https://placehold.co/200x200/e0e7ff/4338ca?text=' +
-        encodeURIComponent(mentor.name ? mentor.name.charAt(0) : 'م');
-
-  const modal = document.createElement('div');
-  modal.id = 'mentorProfileModal';
-  modal.className = 'modal active';
-  modal.innerHTML = `
-    <div class="modal-content mentor-profile-modal" style="max-width: 600px;">
-      <button class="close-modal" onclick="closeMentorProfile()">&times;</button>
-
-      <div class="mentor-profile-header">
-        <img src="${avatarUrl}" alt="${mentor.name}" class="mentor-profile-avatar">
-        <h2 class="text-3xl font-bold mt-4" style="color: var(--text-dark);">${mentor.name}</h2>
-        <p class="text-lg mt-2" style="color: var(--primary);">${mentor.title || 'مرشد مهني'}</p>
-      </div>
-
-      <div class="mentor-profile-body">
-        <div class="mentor-info-grid">
-          <div class="mentor-info-item">
-            <i class="fas fa-briefcase mentor-info-icon"></i>
-            <div>
-              <p class="mentor-info-label">سنوات الخبرة</p>
-              <p class="mentor-info-value">${mentor.experience || 'غير محدد'}</p>
-            </div>
-          </div>
-
-          <div class="mentor-info-item">
-            <i class="fas fa-star mentor-info-icon"></i>
-            <div>
-              <p class="mentor-info-label">التخصص</p>
-              <p class="mentor-info-value">${mentor.specialty || 'الإرشاد المهني'}</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="mentor-bio-section">
-          <h3 class="text-xl font-bold mb-3" style="color: var(--text-dark);">
-            <i class="fas fa-user-circle ml-2"></i>نبذة تعريفية
-          </h3>
-          <p class="mentor-bio-text">${mentor.bio || 'لا توجد نبذة تعريفية متاحة.'}</p>
-        </div>
-      </div>
-    </div>
-  `;
-
-  document.body.appendChild(modal);
-}
 
 function closeMentorProfile() {
   const modal = document.getElementById('mentorProfileModal');
