@@ -4594,3 +4594,102 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 
 
+/* ==============================================================
+   🚀 الحل السحري: زر إغلاق عائم يظهر فوق كل شيء (Mobile Only)
+   ============================================================== */
+
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. إنشاء الزر برمجياً لضمان عدم تأثره بأي CSS قديم
+    const globalBtn = document.createElement('button');
+    globalBtn.id = 'globalFloatingClose';
+    globalBtn.innerHTML = `
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+    `;
+    
+    // 2. تصميم الزر (CSS in JS) ليكون ظاهراً 100%
+    Object.assign(globalBtn.style, {
+        position: 'fixed',
+        top: '20px',           // مسافة من الأعلى
+        left: '20px',          // مسافة من اليسار
+        width: '45px',
+        height: '45px',
+        backgroundColor: '#ffffff',
+        color: '#000000',
+        borderRadius: '50%',
+        border: '2px solid #e2e8f0',
+        boxShadow: '0 10px 25px rgba(0,0,0,0.5)', // ظل قوي
+        zIndex: '2147483647',  // أعلى طبقة في المتصفح
+        display: 'none',       // مخفي افتراضياً
+        alignItems: 'center',
+        justifyContent: 'center',
+        cursor: 'pointer',
+        webkitTapHighlightColor: 'transparent'
+    });
+
+    // إضافة الزر للصفحة
+    document.body.appendChild(globalBtn);
+
+    // 3. مراقب ذكي يكتشف متى تفتح أي نافذة
+    function checkActiveModals() {
+        // قائمة بمعرفات (IDs) جميع الصفحات المنبثقة في الموقع
+        const modalIds = [
+            'purchasePage', 
+            'treePlanPage', 
+            'hollandAssessmentPage', 
+            'interviewCoachPage',
+            'cvBookingModal',
+            'loginModal',
+            'addUserModal'
+        ];
+
+        let isActive = false;
+
+        // فحص كل النوافذ هل هناك واحدة مفتوحة؟
+        modalIds.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                const style = window.getComputedStyle(el);
+                // الشروط التي تدل على أن النافذة مفتوحة
+                if (style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0') {
+                    isActive = true;
+                }
+                // فحص الكلاسات أيضاً
+                if (el.classList.contains('active') || el.classList.contains('show')) {
+                    isActive = true;
+                }
+            }
+        });
+
+        // إظهار أو إخفاء الزر بناءً على النتيجة
+        if (isActive && window.innerWidth <= 768) {
+            globalBtn.style.display = 'flex';
+        } else {
+            globalBtn.style.display = 'none';
+        }
+    }
+
+    // فحص الحالة كل نصف ثانية (حل مضمون 100%)
+    setInterval(checkActiveModals, 500);
+
+    // 4. وظيفة الزر عند الضغط: إغلاق كل شيء!
+    globalBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // إغلاق جميع النوافذ المعروفة
+        const allModals = document.querySelectorAll('.modal, .admin-modal, .purchase-page, .tree-plan-page, .holland-assessment-page');
+        allModals.forEach(modal => {
+            modal.style.display = 'none';
+            modal.classList.remove('active', 'show');
+        });
+
+        // إعادة تفعيل سكرول الصفحة الرئيسية
+        document.body.classList.remove('overflow-hidden');
+        document.body.style.overflow = '';
+        
+        // إخفاء الزر نفسه
+        globalBtn.style.display = 'none';
+    });
+});
